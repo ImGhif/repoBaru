@@ -155,7 +155,7 @@ public class BarangPanel extends javax.swing.JPanel {
                             .addComponent(txt_hargaJual, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
                             .addComponent(txt_hargaBeli)
                             .addComponent(txt_namaBarang))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(110, 110, 110))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -199,7 +199,7 @@ public class BarangPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

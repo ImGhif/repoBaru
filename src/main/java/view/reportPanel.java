@@ -26,19 +26,206 @@ public class reportPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Report = new javax.swing.JLabel();
+        Barang = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        Supplier = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        TM = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
+        TK = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable7 = new javax.swing.JTable();
+        btnDown = new javax.swing.JToggleButton();
+        btnKel = new javax.swing.JToggleButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        Barang1 = new javax.swing.JLabel();
+        Barang2 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+
+        Report.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        Report.setText("Report View");
+
+        Barang.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        Barang.setText("Barang");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.setMaximumSize(new java.awt.Dimension(2147483647, 150));
+        jTable1.setMinimumSize(new java.awt.Dimension(60, 150));
+        jTable1.setPreferredSize(new java.awt.Dimension(300, 150));
+        jScrollPane1.setViewportView(jTable1);
+
+        Supplier.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        Supplier.setText("Supplier");
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable5.setMaximumSize(new java.awt.Dimension(2147483647, 150));
+        jTable5.setMinimumSize(new java.awt.Dimension(60, 150));
+        jTable5.setPreferredSize(new java.awt.Dimension(300, 150));
+        jScrollPane5.setViewportView(jTable5);
+
+        TM.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        TM.setText("Transaksi Masuk");
+
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable6.setMaximumSize(new java.awt.Dimension(2147483647, 150));
+        jTable6.setMinimumSize(new java.awt.Dimension(60, 150));
+        jTable6.setPreferredSize(new java.awt.Dimension(300, 150));
+        jScrollPane6.setViewportView(jTable6);
+
+        TK.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        TK.setText("Transaksi Keluar");
+
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable7.setMaximumSize(new java.awt.Dimension(2147483647, 150));
+        jTable7.setMinimumSize(new java.awt.Dimension(60, 150));
+        jTable7.setPreferredSize(new java.awt.Dimension(300, 150));
+        jScrollPane7.setViewportView(jTable7);
+
+        btnDown.setText("Download");
+
+        btnKel.setText("Keluar");
+
+        Barang1.setText("Tanggal Awal");
+
+        Barang2.setText("Tanggal Akhir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TK)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(Barang1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(Barang2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 437, Short.MAX_VALUE)
+                                .addComponent(btnDown)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnKel))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane7)
+                            .addComponent(jScrollPane5))
+                        .addGap(32, 32, 32))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Report)
+                            .addComponent(Barang)
+                            .addComponent(Supplier)
+                            .addComponent(TM))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(Report)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Barang1))
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Barang2)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDown)
+                        .addComponent(btnKel)))
+                .addGap(18, 18, 18)
+                .addComponent(Barang)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Supplier)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(TM)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(TK)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Barang;
+    private javax.swing.JLabel Barang1;
+    private javax.swing.JLabel Barang2;
+    private javax.swing.JLabel Report;
+    private javax.swing.JLabel Supplier;
+    private javax.swing.JLabel TK;
+    private javax.swing.JLabel TM;
+    private javax.swing.JToggleButton btnDown;
+    private javax.swing.JToggleButton btnKel;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
     // End of variables declaration//GEN-END:variables
 }
