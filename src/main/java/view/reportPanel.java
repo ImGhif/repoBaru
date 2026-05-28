@@ -4,17 +4,28 @@
  */
 package view;
 
+import config.databaseConnection;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author yooson
  */
 public class reportPanel extends javax.swing.JPanel {
-
+    private java.sql.Connection conn;
     /**
      * Creates new form reportPanel
      */
     public reportPanel() {
         initComponents();
+        // isi koneksi: Panggil method static dari config.databaseConnection
+        conn = databaseConnection.getConnection();
     }
 
     /**
@@ -39,12 +50,10 @@ public class reportPanel extends javax.swing.JPanel {
         TK = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable7 = new javax.swing.JTable();
-        btnDown = new javax.swing.JToggleButton();
-        btnKel = new javax.swing.JToggleButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        Barang1 = new javax.swing.JLabel();
-        Barang2 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        btnCetakBrg = new javax.swing.JToggleButton();
+        btnCtkSupp = new javax.swing.JToggleButton();
+        btnCtkMsk = new javax.swing.JToggleButton();
+        btnCtkKlr = new javax.swing.JToggleButton();
 
         Report.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         Report.setText("Report View");
@@ -88,7 +97,7 @@ public class reportPanel extends javax.swing.JPanel {
         jScrollPane5.setViewportView(jTable5);
 
         TM.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        TM.setText("Transaksi Masuk");
+        TM.setText("Barang Masuk");
 
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,7 +116,7 @@ public class reportPanel extends javax.swing.JPanel {
         jScrollPane6.setViewportView(jTable6);
 
         TK.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        TK.setText("Transaksi Keluar");
+        TK.setText("Barang Keluar");
 
         jTable7.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,13 +134,17 @@ public class reportPanel extends javax.swing.JPanel {
         jTable7.setPreferredSize(new java.awt.Dimension(300, 150));
         jScrollPane7.setViewportView(jTable7);
 
-        btnDown.setText("Download");
+        btnCetakBrg.setText("Cetak");
+        btnCetakBrg.addActionListener(this::btnCetakBrgActionPerformed);
 
-        btnKel.setText("Keluar");
+        btnCtkSupp.setText("Cetak");
+        btnCtkSupp.addActionListener(this::btnCtkSuppActionPerformed);
 
-        Barang1.setText("Tanggal Awal");
+        btnCtkMsk.setText("Cetak");
+        btnCtkMsk.addActionListener(this::btnCtkMskActionPerformed);
 
-        Barang2.setText("Tanggal Akhir");
+        btnCtkKlr.setText("Cetak");
+        btnCtkKlr.addActionListener(this::btnCtkKlrActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,81 +157,120 @@ public class reportPanel extends javax.swing.JPanel {
                         .addComponent(TK)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(Barang1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(Barang2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 437, Short.MAX_VALUE)
-                                .addComponent(btnDown)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnKel))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane7)
-                            .addComponent(jScrollPane5))
-                        .addGap(32, 32, 32))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Report)
                             .addComponent(Barang)
                             .addComponent(Supplier)
                             .addComponent(TM))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCetakBrg)
+                            .addComponent(btnCtkSupp)
+                            .addComponent(btnCtkMsk)
+                            .addComponent(btnCtkKlr))
+                        .addGap(10, 10, 10))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(Report)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Barang1))
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Barang2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnDown)
-                        .addComponent(btnKel)))
-                .addGap(18, 18, 18)
+                .addGap(59, 59, 59)
                 .addComponent(Barang)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCetakBrg))
                 .addGap(18, 18, 18)
                 .addComponent(Supplier)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCtkSupp))
                 .addGap(18, 18, 18)
                 .addComponent(TM)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCtkMsk))
                 .addGap(18, 18, 18)
                 .addComponent(TK)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCtkKlr))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCetakBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakBrgActionPerformed
+        eksekusiCetak("/report/barang.jrxml", "barang.jrxml");
+    }//GEN-LAST:event_btnCetakBrgActionPerformed
 
+    private void btnCtkSuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCtkSuppActionPerformed
+        eksekusiCetak("/report/supplier.jrxml", "barang.jrxml");
+    }//GEN-LAST:event_btnCtkSuppActionPerformed
+
+    private void btnCtkMskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCtkMskActionPerformed
+        eksekusiCetak("/report/masuk.jrxml", "barang.jrxml");
+    }//GEN-LAST:event_btnCtkMskActionPerformed
+
+    private void btnCtkKlrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCtkKlrActionPerformed
+        eksekusiCetak("/report/keluar.jrxml", "barang.jrxml");
+    }//GEN-LAST:event_btnCtkKlrActionPerformed
+
+
+    
+    //METHOD PEMBANTU AGAR KODE TIDAK BERULANG-ULANG
+    private void eksekusiCetak(String resourcePath, String fileName) {
+        try {
+            if (conn == null || conn.isClosed()) {
+                conn = databaseConnection.getConnection();
+            }
+
+            if (conn == null) {
+                JOptionPane.showMessageDialog(this, "Gagal mencetak: Koneksi ke database aktif tidak ditemukan.");
+                return;
+            }
+
+            // Membaca file mentah .jrxml (Sangat aman untuk menangani Jasper Studio versi 7)
+            java.io.InputStream reportStream = getClass().getResourceAsStream(resourcePath);
+
+            if (reportStream == null) {
+                JOptionPane.showMessageDialog(this, "File '" + fileName + "' tidak ditemukan di folder src/main/java/view/ !\n"
+                        + "Pastikan file mentah .jrxml hasil desain sudah ditaruh di folder tersebut.");
+                return;
+            }
+
+            // Compile otomatis file .jrxml secara realtime
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);
+            HashMap<String, Object> parameters = new HashMap<>();
+
+            JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, conn);
+            JasperViewer.viewReport(print, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal cetak berkas " + fileName + ":\n" + e.getMessage());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Barang;
-    private javax.swing.JLabel Barang1;
-    private javax.swing.JLabel Barang2;
     private javax.swing.JLabel Report;
     private javax.swing.JLabel Supplier;
     private javax.swing.JLabel TK;
     private javax.swing.JLabel TM;
-    private javax.swing.JToggleButton btnDown;
-    private javax.swing.JToggleButton btnKel;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JToggleButton btnCetakBrg;
+    private javax.swing.JToggleButton btnCtkKlr;
+    private javax.swing.JToggleButton btnCtkMsk;
+    private javax.swing.JToggleButton btnCtkSupp;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;

@@ -21,7 +21,7 @@ public class main {
                     loginFrame formLogin = new loginFrame();
                     // Menampilkan loginFrame ke layar
                     formLogin.setVisible(true);
-                }
+                    }
             });
             
         } else {
